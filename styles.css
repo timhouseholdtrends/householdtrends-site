@@ -1,0 +1,1403 @@
+:root{
+  --bg: #070A12;
+  --panel: rgba(255,255,255,.06);
+  --panel2: rgba(255,255,255,.085);
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.70);
+  --line: rgba(255,255,255,.12);
+
+  /* From your logo: warm gold accents (tasteful) */
+  --accent: #F0A000;
+  --accent2: #D98B00;
+
+  --shadow: 0 12px 30px rgba(0,0,0,.35);
+  --radius: 18px;
+  --radius2: 26px;
+
+  --container: 1120px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg); /* base only */
+  overflow-x:hidden;
+  position: relative;
+}
+/* One unified background layer for the whole site */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  /* Big, smooth blobs positioned where layout actually lives */
+  background:
+    radial-gradient(900px 600px at 12% 12%, rgba(240,160,0,.12), transparent 62%),
+    radial-gradient(760px 520px at 78% 18%, rgba(217,139,0,.10), transparent 62%),
+    radial-gradient(900px 700px at 50% 75%, rgba(240,160,0,.08), transparent 65%),
+    linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0) 30%, rgba(0,0,0,.08) 100%);
+}
+
+a{color:inherit; text-decoration:none}
+img{max-width:100%; display:block}
+.container{max-width:var(--container); margin:0 auto; padding:0 20px}
+
+/* Topbar */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter: blur(12px);
+  background: rgba(7,10,18,.58);
+  border-bottom: 1px solid var(--line);
+}
+.nav{
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+/* HEADER LOGO (LOGO ONLY) */
+.brand{
+  display:flex;
+  align-items:center;
+}
+html { scroll-behavior: smooth; }
+section { scroll-margin-top: 96px; }
+
+/* Large, confident distributor logo */
+.brand--logo-only .brand__logo{
+  height: 250px;          /* ← change to 64px if you want even bolder */
+  width: auto;
+  max-width: 320px;
+  object-fit: contain;
+
+  background: none;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+}
+.brand__name{font-weight:700; letter-spacing:.2px}
+
+.nav__links{display:flex; gap:14px; align-items:center}
+.nav__links a{
+  padding:10px 12px;
+  border-radius: 12px;
+  color: var(--muted);
+  transition: transform .15s ease, background .15s ease, color .15s ease;
+}
+.nav__links a:hover{background: rgba(255,255,255,.06); color: var(--text); transform: translateY(-1px)}
+.nav__links a.is-active{color: var(--text)}
+
+.nav__burger{
+  display:none;
+  width:42px; height:42px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--line);
+  cursor:pointer;
+}
+.nav__burger span{
+  display:block;
+  height:2px; width:18px;
+  margin:0 auto;
+  background: rgba(255,255,255,.8);
+}
+.nav__burger span + span{margin-top:4px}
+
+.mobile{
+  display:none;
+  border-top: 1px solid var(--line);
+  padding:10px 20px 16px;
+}
+.mobile a{
+  display:block;
+  padding:12px 10px;
+  border-radius:12px;
+  color: var(--muted);
+}
+.mobile a:hover{background: rgba(255,255,255,.06); color: var(--text)}
+.mobile a.is-active{color: var(--text)}
+
+/* Buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #050712;
+  font-weight: 800;
+  border: 0;
+  box-shadow: var(--shadow);
+  transform: translateZ(0);
+  transition: transform .15s ease, filter .15s ease;
+}
+.btn:hover{transform: translateY(-1px); filter: brightness(1.04)}
+.btn--ghost{
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  border: 1px solid var(--line);
+  box-shadow:none;
+}
+.btn--small{padding:10px 12px; border-radius:12px}
+
+/* Hero */
+.hero{position:relative; min-height: 82vh; display:flex; align-items:center}
+.hero__media{position:absolute; inset:0; overflow:hidden}
+.hero__video, .hero__image{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  transform: scale(1.03);
+}
+.hero__image{display:none;}
+.hero__overlay{
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(7,10,18,.55), rgba(7,10,18,.88) 60%, rgba(7,10,18,.98));
+}
+.hero__grid{
+  position:absolute; inset:-40%;
+  background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform: rotate(10deg);
+  opacity:.25;
+  mask-image: radial-gradient(closest-side, rgba(0,0,0,.75), transparent);
+}
+
+.hero__content{position:relative; padding: 70px 0 56px}
+.pill{
+  display:inline-flex; align-items:center; gap:10px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  color: var(--muted);
+  font-weight: 600;
+}
+.dot{width:9px;height:9px;border-radius:50%; background: var(--accent); box-shadow:0 0 0 4px rgba(240,160,0,.18)}
+
+h1{
+  margin: 14px 0 12px;
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1.02;
+  letter-spacing: -1px;
+}
+.grad{
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip:text;
+  color: transparent;
+}
+.lead{
+  max-width: 720px;
+  font-size: clamp(16px, 1.8vw, 19px);
+  color: var(--muted);
+  line-height: 1.55;
+}
+.hero__cta{display:flex; gap:12px; margin-top: 18px; flex-wrap:wrap}
+
+.hero__stats{
+  margin-top: 24px;
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 12px;
+  max-width: 980px;
+}
+.stat{
+  padding: 14px 14px;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,.06);
+  border:1px solid var(--line);
+}
+.stat__top{font-weight:700}
+.stat__bottom{margin-top:6px; color: var(--muted); font-size: 13.5px; line-height:1.4}
+
+/* Sections */
+.section{padding: 70px 0}
+.section--alt{
+  background: rgba(255,255,255,.015);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+body::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events:none;
+  background-image: url("./assets/noise.png");
+  opacity: .05;
+  mix-blend-mode: overlay;
+}
+.banner-strip{
+  padding: 10px 0 6px; /* was 26px 0 10px */
+}
+
+
+.banner-strip__inner{
+  position: relative;
+  border-radius: var(--radius2);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.04);
+  box-shadow: 0 12px 26px rgba(0,0,0,.22);
+}
+
+.banner-strip__img{
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display:block;
+  filter: saturate(.95) contrast(1.05) brightness(.9);
+}
+
+.banner-strip__overlay{
+  position:absolute;
+  inset:0;
+  background: linear-gradient(90deg, rgba(7,10,18,.75), rgba(7,10,18,.25), rgba(7,10,18,.75));
+}
+
+.banner-strip__content{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding: 18px 18px;
+}
+
+.banner-strip__kicker{
+  font-weight: 800;
+  color: rgba(255,255,255,.88);
+  letter-spacing:.2px;
+}
+
+.banner-strip__line{
+  width: 140px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+}
+
+@media (max-width: 980px){
+  .banner-strip__img{ height: 200px; }
+}
+
+.section__head{max-width: 820px; margin-bottom: 26px}
+.section__head h2{margin:0 0 10px; font-size: clamp(26px, 3vw, 36px)}
+.muted{color: var(--muted)}
+.h3{font-size: 20px; margin:0 0 6px}
+.tiny{font-size:12.5px}
+
+.grid3{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 14px;
+}
+/* HOW IT WORKS (NEW) */
+.how{
+  display:grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 14px;
+  align-items: start;
+}
+.how__steps{
+  display:grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+.howstep{
+  display:flex;
+  gap: 12px;
+  padding: 14px;
+  border-radius: var(--radius2);
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--line);
+}
+.howstep__badge{
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  display:grid;
+  place-items:center;
+  font-weight: 900;
+  color: #050712;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+}
+.howstep h3{margin: 2px 0 6px}
+.howstep p{margin: 0; line-height: 1.5}
+.how__cta{display:flex; gap:12px; margin-top: 16px; flex-wrap:wrap}
+
+/* Supply chain graphic card */
+.graphic-card{
+  border-radius: var(--radius2);
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--line);
+  overflow:hidden;
+  box-shadow: 0 12px 26px rgba(0,0,0,.22);
+}
+/* Better supply chain map graphic */
+.graphic-card--map{
+  background: rgba(255,255,255,.045);
+}
+
+.supply-map{
+  width: 100%;
+  height: auto;
+  display:block;
+  padding: 8px 10px 0;
+}
+
+.graphic-card__title{
+  padding: 14px 16px 0;
+  font-weight: 800;
+  color: rgba(255,255,255,.86);
+}
+.supply-svg{
+  width: 100%;
+  height: auto;
+  display:block;
+  padding: 8px 10px 0;
+}
+.node__bg{
+  fill: rgba(255,255,255,.05);
+  stroke: rgba(255,255,255,.14);
+  stroke-width: 2;
+}
+.node__bg--primary{
+  fill: rgba(255,255,255,.06);
+  stroke: rgba(240,160,0,.35);
+}
+.node__title{
+  fill: rgba(255,255,255,.92);
+  font-weight: 900;
+  font-size: 22px;
+}
+.node__sub{
+  fill: rgba(255,255,255,.70);
+  font-weight: 600;
+  font-size: 15px;
+}
+.node__hint{
+  fill: rgba(255,255,255,.55);
+  font-weight: 600;
+  font-size: 14px;
+}
+.graphic-card__legend{
+  display:flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 16px 14px;
+  border-top: 1px solid var(--line);
+  background: rgba(0,0,0,.14);
+}
+/* Supply chain image replacement */
+.graphic-card--image{
+  background: rgba(255,255,255,.04);
+}
+/* What We Do split layout */
+.how--split{
+  display:grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items:start;
+}
+
+.how__left{
+  display:flex;
+  flex-direction:column;
+  gap: 18px;
+}
+
+.how__right{
+  display:flex;
+  flex-direction:column;
+  gap: 22px;
+}
+
+/* Image card spacing */
+.graphic-card--image{
+  background: rgba(255,255,255,.04);
+  border-radius: var(--radius2);
+  padding: 12px;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .how--split{
+    grid-template-columns: 1fr;
+  }
+
+  .how__right{
+    margin-top: 8px;
+  }
+}
+/* Align Get Connected columns nicely */
+.two-col--align{
+  align-items: center;
+}
+
+/* Image-only panel */
+.panel--image{
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+/* Partnership image styling */
+.partner-image{
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+
+  /* Subtle, professional treatment */
+  filter: grayscale(100%) contrast(1.05) brightness(.95);
+  opacity: .9;
+}
+/* Align combined Brands + Get Connected section */
+.two-col--top{
+  align-items: flex-start;
+}
+
+/* Slightly tighter brand grid for side-by-side layout */
+.brand-strip--compact{
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 22px;
+}
+
+/* Make sure panels feel balanced */
+.panel{
+  height: 100%;
+}
+.brand-logo img{
+  max-height: 42px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(.95);
+  opacity: .85;
+}
+
+.supply-image{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 18px;
+  margin-top: 10px;
+  object-fit: cover;
+}
+
+.legend-item{display:flex; align-items:center; gap:10px; font-weight:700; color: rgba(255,255,255,.80)}
+.legend-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(240,160,0,.16);
+}
+
+/* AS SEEN ON (NEW) */
+.seen{
+  border-radius: var(--radius2);
+}
+.seen__top{max-width: 820px; margin-bottom: 18px}
+.seen__row{
+  display:grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 14px;
+  align-items: stretch;
+}
+.seen__badge{
+  display:flex;
+  gap: 14px;
+  align-items:center;
+  padding: 16px;
+  border-radius: var(--radius2);
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--line);
+}
+.seen__badge img{
+  width: 86px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 14px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  padding: 8px;
+}
+.seen__badge.is-missing{
+  opacity: .95;
+}
+.seen__badgeTitle{
+  font-weight: 900;
+  font-size: 18px;
+}
+.seen__proof{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 12px;
+}
+.proof-card{
+  padding: 14px;
+  border-radius: var(--radius2);
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--line);
+}
+.proof-title{font-weight: 900; margin-bottom: 6px}
+.seen__note{
+  margin-top: 12px;
+  font-size: 13px;
+}
+.seen__note code{
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--line);
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+
+/* Responsive for new sections */
+@media (max-width: 980px){
+  .how{grid-template-columns:1fr}
+  .seen__row{grid-template-columns:1fr}
+  .seen__proof{grid-template-columns:1fr}
+}
+
+.card{
+  padding: 18px;
+  border-radius: var(--radius2);
+  background: rgba(255,255,255,.05);
+  border:1px solid var(--line);
+  box-shadow: 0 10px 22px rgba(0,0,0,.22);
+}
+.card__icon{
+  width: 44px; height:44px; border-radius:14px;
+  display:grid; place-items:center;
+  background: rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.card h3{margin: 6px 0 8px}
+.card p{margin:0; color: var(--muted); line-height:1.55}
+
+.strip{
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255,255,255,.02);
+}
+.strip__inner{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+}
+.mini-link{
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 12px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.04);
+}
+.mini-link:hover{background: rgba(255,255,255,.06)}
+/* Brand strip (NEW) */
+.brand-strip{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 12px;
+}
+/* Brand logos — no boxes */
+.brand-logo{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 0;
+  background: none;
+  border: none;
+}
+.brand-logo img{
+  max-height: 56px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* FORCE brand logos to full color */
+.brand-logo img{
+  filter: none !important;
+  opacity: 1 !important;
+}
+/* Handshake graphic container (clear but tasteful box) */
+.handshake-wrap{
+  border-radius: var(--radius2);
+  overflow: hidden;
+
+  background: rgba(255,255,255,.06);   /* slightly stronger */
+  border: 1px solid rgba(255,255,255,.18);
+
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.05);
+}
+/* Brands panel – lighter background for visibility */
+/* Brands panel – off-white background for logo contrast */
+.panel--brands{
+  background: #f4f5f7;          /* soft off-white */
+  border: 1px solid #e3e5e8;
+  color: #111;
+}
+.panel--brands .brand-strip{
+  margin-top: 14px;
+}
+.panel--brands h2,
+.panel--brands h3,
+.panel--brands p,
+.panel--brands em{
+  color: #111;
+}
+.panel--brands .brand-more em{
+  color: #444;
+}
+.panel--brands{
+  border-radius: 16px;
+}
+.panel--brands{
+  box-shadow: 0 12px 28px rgba(0,0,0,.15);
+}
+
+.brand-more{
+  margin-top: 10px;
+  color: rgba(255,255,255,.70);
+  font-size: 14px;
+}
+.brand-strip--compact{
+  gap: 28px;
+}
+
+/* As seen on (simple) */
+.seen-simple{
+  border-radius: var(--radius2);
+}
+.seen-simple__row{
+  margin-top: 12px;
+  display:flex;
+  align-items:center;
+  gap: 14px;
+  padding: 16px;
+  border-radius: var(--radius2);
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--line);
+}
+.seen-simple__badge{
+  width: 88px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 14px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  padding: 8px;
+}
+.seen-simple__text{
+  font-weight: 600;
+}
+
+/* Better supply chain map graphic small tweak */
+.graphic-card--map{ background: rgba(255,255,255,.045); }
+.supply-map{ width:100%; height:auto; display:block; padding: 8px 10px 0; }
+
+@media (max-width: 980px){
+  .brand-strip{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .seen-simple__row{ flex-direction: column; align-items:flex-start; }
+}
+
+/* Timeline */
+.timeline{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 14px;
+}
+.step{
+  display:flex; gap:14px;
+  padding: 18px;
+  border-radius: var(--radius2);
+  background: rgba(255,255,255,.05);
+  border:1px solid var(--line);
+}
+/* Tighten gap below hero */
+.hero{
+  min-height: 80vh; /* keep */
+  padding-bottom: 18px; /* NEW */
+}
+
+.step__num{
+  flex: 0 0 42px;
+  width:42px; height:42px;
+  border-radius: 16px;
+  display:grid; place-items:center;
+  background: linear-gradient(135deg, rgba(240,160,0,.95), rgba(217,139,0,.95));
+  color: #050712;
+  font-weight: 900;
+}
+/* Two-column layout */
+.what-split{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* LEFT column */
+.what-left{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+.what-graphic-box,
+.what-copy-box{
+  flex: 1;
+}
+
+/* BOX: graphic */
+.what-graphic-box{
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.04);
+}
+.what-graphic{
+  height: 100%;
+  min-height: 180px;   /* keeps image from collapsing */
+  object-fit: cover;
+}
+.what-graphic{
+  height: 100%;
+  min-height: 180px;   /* keeps image from collapsing */
+  object-fit: cover;
+}
+.what-copy-box{
+  padding: 14px 16px;   /* was ~22–24 */
+}
+.what-copy-box p{
+  margin: 0;
+}
+
+.what-copy-box h2{
+  margin-bottom: 8px;
+}
+/* Global section spacing (slightly tighter) */
+.section{
+  padding: 72px 0;
+}
+.what-copy-box h2{
+  margin-bottom: 6px;
+}
+
+/* Pull Who We Are up specifically */
+#who.section{
+  padding-top: 32px; /* was 44px */
+}
+
+}
+/* What We Do: make both columns truly align */
+.what-split{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;              /* slightly tighter than 28 */
+  align-items: stretch;
+}
+
+/* Left column stacks 2 equal boxes */
+.what-left{
+  display:flex;
+  flex-direction:column;
+  gap: 12px;              /* tighter */
+  height: 100%;
+}
+
+/* Critical: allow flex children to shrink to match right column height */
+.what-left > *{
+  min-height: 0;
+}
+
+/* Make both boxes equal height */
+.what-graphic-box,
+.what-copy-box{
+  flex: 1;
+  min-height: 0;          /* critical */
+}
+
+/* Graphic fills its box (NOT fixed height) */
+.what-graphic{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display:block;
+}
+
+/* Make copy box smaller */
+.what-copy-box{
+  padding: 14px;     /* smaller */
+}
+
+.what-copy-box h2{
+  margin: 0 0 2px 0;
+}
+
+.what-copy-box p{
+  margin: 0;         /* remove extra paragraph spacing */
+}
+
+/* Right column also stretches */
+.what-right{
+  display:flex;
+  flex-direction:column;
+  height: 100%;
+}
+
+/* Remove any extra spacing the steps might add */
+.what-right .how__steps{
+  margin: 0;
+}
+
+.what-graphic{
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+/* BOX: What We Do text */
+.what-copy-box{
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+  padding: 22px;
+}
+
+.what-copy-box h2{
+  margin-bottom: 10px;
+}
+/* Make columns align in height */
+.what-split{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: stretch; /* important */
+}
+
+/* RIGHT column */
+.what-right{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .what-split{
+    grid-template-columns: 1fr;
+  }
+  .what-graphic{
+    height: 200px;
+  }
+}
+
+/* CTA box */
+.cta-box{
+  margin-top: 22px;
+  padding: 18px;
+  border-radius: var(--radius2);
+  background: linear-gradient(135deg, rgba(240,160,0,.10), rgba(217,139,0,.10));
+  border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+}
+.cta-box--tight{margin-top: 26px}
+
+/* Pages */
+.page{min-height: calc(100vh - 72px)}
+.pagehead{
+  padding: 54px 0 12px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255,255,255,.02);
+}
+.pagehead h1{margin:0 0 10px}
+.two-col{
+  display:grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 14px;
+}
+.panel{
+  padding: 18px;
+  border-radius: var(--radius2);
+  background: rgba(255,255,255,.05);
+  border:1px solid var(--line);
+}
+.list{margin: 10px 0 0; padding-left: 18px; color: var(--muted); line-height:1.7}
+.note{
+  margin-top: 14px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.04);
+  border:1px solid var(--line);
+  color: var(--muted);
+}
+/* And many more aligned right */
+.brand-more--right{
+  text-align: right;
+}
+
+/* Minimal "As Seen On" */
+.seen-min{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+}
+.seen-min__label{
+  font-weight: 700;
+  letter-spacing: .2px;
+  color: rgba(255,255,255,.78);
+}
+.seen-min__logo{
+  height: 34px;
+  width: auto;
+  object-fit: contain;
+  opacity: .92;
+}
+
+/* Brand logos */
+.logo-grid{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 12px;
+}
+.logo-card{
+  position:relative;
+  padding: 20px 16px;
+  border-radius: var(--radius2);
+  background: rgba(255,255,255,.05);
+  border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  min-height: 96px;
+  color: rgba(255,255,255,.84);
+  font-weight: 800;
+  letter-spacing: .2px;
+  overflow:hidden;
+}
+.logo-card img{
+  max-height: 44px;
+  max-width: 90%;
+  object-fit: contain;
+  filter: saturate(1.05);
+}
+.logo-card::after{
+  content:"";
+  position:absolute; inset:-40%;
+  background: radial-gradient(closest-side, rgba(240,160,0,.10), transparent 65%);
+  opacity:.7;
+  transform: rotate(12deg);
+  pointer-events:none;
+}
+
+/* Forms */
+.form{display:grid; gap: 12px; margin-top: 8px}
+.form__row{display:grid; gap:6px}
+label{font-weight:600; color: rgba(255,255,255,.86)}
+input, textarea{
+  padding: 12px 12px;
+  border-radius: 14px;
+  border:1px solid var(--line);
+  background: rgba(0,0,0,.18);
+  color: var(--text);
+  outline: none;
+}
+input:focus, textarea:focus{
+  border-color: rgba(240,160,0,.60);
+  box-shadow: 0 0 0 4px rgba(240,160,0,.14);
+}
+/* Footer brand logo only */
+.footer__brand--logo-only{
+  display:flex;
+  align-items:center;
+}
+/* Box around What We Do */
+.what-box{
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 18px;
+  padding: 28px;
+}
+
+/* Two-column layout like your Connect section */
+.what-split{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.what-left{
+  display:flex;
+  flex-direction:column;
+  gap: 16px;
+}
+
+.what-right{
+  display:flex;
+  flex-direction:column;
+  gap: 18px;
+}
+
+/* Smaller graphic (fits the box, not giant) */
+.what-graphic-wrap{
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.04);
+}
+
+.what-graphic{
+  width: 100%;
+  height: 220px;       /* key: keeps it from getting huge */
+  object-fit: cover;
+  display:block;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .what-split{
+    grid-template-columns: 1fr;
+  }
+  .what-graphic{
+    height: 200px;
+  }
+}
+
+.footer__brand--logo-only .footer__logo{
+  height: 250px;          /* adjust if you want slightly bigger/smaller */
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+}
+
+/* Footer */
+.footer{padding: 0px 0 px; border-top:1px solid var(--line)}
+.footer__inner{display:grid; gap:14px}
+.footer__brand{display:flex; align-items:center; gap:12px}
+.footer__logo{
+  height: 250px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+}
+.footer__name{font-weight:900}
+.footer__links{display:flex; gap:14px; flex-wrap:wrap}
+.footer__links a{color: var(--muted)}
+.footer__links a:hover{color: var(--text)}
+.footer__fine{padding-top: 4px}
+
+/* Responsive */
+@media (max-width: 980px){
+  .hero__stats{grid-template-columns:1fr; max-width:640px}
+  .grid3{grid-template-columns:1fr}
+  .timeline{grid-template-columns:1fr}
+  .two-col{grid-template-columns:1fr}
+  .logo-grid{grid-template-columns: repeat(2, minmax(0,1fr))}
+}
+/* Footer right badge */
+.footer__inner{
+  display:grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 24px;
+  align-items:center;
+}
+
+.footer__right{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap: 8px;
+}
+
+.footer__badge{
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  opacity: .9;
+}
+/* Footer "As Seen On" */
+.footer__seen{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+
+.footer__seen-label{
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,.65);
+  white-space: nowrap;
+}
+
+/* Slightly larger Inc badge */
+.footer__badge{
+  height: 38px;   /* was ~32px */
+  width: auto;
+  object-fit: contain;
+  opacity: .92;
+}
+
+/* Mobile cleanup */
+@media (max-width: 900px){
+  .footer__inner{
+    grid-template-columns: 1fr;
+    text-align:center;
+  }
+  .footer__right{
+    align-items:center;
+  }
+}
+
+@media (max-width: 760px){
+  .nav__links{display:none}
+  .nav__burger{display:block}
+  .mobile.is-open{display:block}
+}
+/* Supply chain graphic – full width, fills container */
+.what-graphic-wrap{
+  width: 100%;
+  margin-bottom: 28px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.04);
+}
+/* Boxed What We Do section */
+.what-box{
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 18px;
+  padding: 32px;
+}
+/* Boxed What We Do section */
+.what-box{
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 18px;
+  padding: 32px;
+}
+
+/* Responsive padding */
+@media (max-width: 900px){
+  .what-box{
+    padding: 24px;
+  }
+}
+
+/* Responsive padding */
+@media (max-width: 900px){
+  .what-box{
+    padding: 24px;
+  }
+}
+
+.what-graphic{
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+/* FORCE Brands panel to off-white (override everything) */
+.panel.panel--brands{
+  background: #f4f5f7 !important;
+  border: 1px solid #e3e5e8 !important;
+  color: #111 !important;
+}
+
+/* Make text inside dark */
+.panel.panel--brands *{
+  color: #111 !important;
+}
+
+/* Keep "And many more!" a bit softer */
+.panel.panel--brands .brand-more em{
+  color: #444 !important;
+}
+
+/* Ensure logos are full color */
+.panel.panel--brands img{
+  filter: none !important;
+  opacity: 1 !important;
+}
+/* =========================
+   FIX: "What We Do" copy box too tall
+   ========================= */
+
+/* Ensure the What section columns don't force equal height boxes */
+.what-split{
+  align-items: start !important;
+}
+
+/* Don't force the left column to stretch */
+.what-left{
+  height: auto !important;
+}
+
+/* IMPORTANT: stop the copy box from filling leftover height */
+.what-copy-box{
+  flex: 0 0 auto !important;     /* hug content */
+  padding: 12px 14px !important; /* smaller box */
+}
+
+/* Tighten spacing inside the copy box */
+.what-copy-box h2{
+  margin: 0 0 6px 0 !important;
+}
+.what-copy-box p{
+  margin: 0 !important;
+}
+
+/* Keep the graphic box flexible/normal */
+.what-graphic-box{
+  flex: 0 0 auto !important;
+}
+
+/* Keep your graphic at the size you were happy with */
+.what-graphic{
+  height: 220px !important;
+  width: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+/* =========================
+   What We Do: lock left boxes to step-group heights
+   ========================= */
+
+/* 2 rows (top group + bottom group), 2 columns (left + right) */
+.what-split{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  grid-template-rows: auto auto !important;
+  gap: 24px !important;
+  align-items: stretch !important;
+}
+
+/* Left column becomes 2-row grid */
+.what-left{
+  display: grid !important;
+  grid-template-rows: 1fr 1fr !important;  /* row heights come from right side */
+  gap: 12px !important;
+  height: auto !important;
+}
+
+/* Right column becomes 2-row grid (top steps + bottom steps) */
+.what-right{
+  display: grid !important;
+  grid-template-rows: auto auto !important;
+  gap: 12px !important;
+  height: auto !important;
+}
+
+/* Make the two left boxes fill their row height */
+.what-graphic-box,
+.what-copy-box{
+  height: 100% !important;
+}
+
+/* Graphic fills its box */
+.what-graphic{
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* Keep What We Do copy box from feeling roomy */
+.what-copy-box{
+  padding: 14px 16px !important;
+}
+.what-copy-box h2{ margin: 0 0 6px 0 !important; }
+.what-copy-box p{ margin: 0 !important; }
+
+/* Step groups stack internally */
+.steps-group{
+  display: grid;
+  gap: 10px;
+}
+/* Pull Who We Are closer to the top */
+#who.section{
+  padding-top: 28px !important;
+}
+
+/* Reduce space below hero so next section is closer */
+.hero__content{
+  padding-bottom: 10px !important;
+}
+/* Remove box styling from What We Do text */
+.what-copy-box{
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Remove box styling from What We Do text */
+.what-copy-box{
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+/* Match What We Do typography to Who We Are */
+.what-copy-box h2{
+  font-size: clamp(26px, 3vw, 36px) !important;
+  margin-bottom: 10px !important;
+}
+
+.what-copy-box p{
+  font-size: 16px !important;
+  line-height: 1.55 !important;
+  color: var(--muted) !important;
+  max-width: 820px; /* same readable width */
+}
+/* Footer height matches header bar */
+.footer{
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.footer__inner{
+  height: 72px;                 /* same as header height */
+  display: flex;                /* simpler than grid for sizing */
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+/* Footer height matches header bar */
+.footer{
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.footer__inner{
+  height: 72px;                 /* same as header height */
+  display: flex;                /* simpler than grid for sizing */
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.footer__logo,
+.footer__brand--logo-only .footer__logo{
+  height: 200px !important;
+  width: auto !important;
+  max-width: 320px !important;
+}

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brands We Connect With | Household Trends</title>
+  <meta name="description" content="A selection of brands Household Trends supports through wholesale distribution and retail connectivity." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand brand--logo-only" href="./index.html" aria-label="Household Trends Home">
+  <img class="brand__logo" src="./assets/logo.jpg" alt="Household Trends logo" />
+</a>
+
+
+      <nav class="nav__links" aria-label="Primary navigation">
+        <a href="./index.html">Home</a>
+        <a href="./brands.html" class="is-active">Brands We Connect With</a>
+        <a href="./contact.html" class="btn btn--small">Partner With Us</a>
+      </nav>
+
+      <button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div id="mobileMenu" class="mobile">
+      <a href="./index.html">Home</a>
+      <a href="./brands.html" class="is-active">Brands We Connect With</a>
+      <a href="./contact.html">Partner With Us</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="pagehead">
+      <div class="container">
+        <h1>Brands we connect with</h1>
+        <p class="muted">
+          A sampling of companies supported through our distribution network. Logos shown belong to their respective owners.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="logo-grid" id="brandGrid">
+          <div class="logo-card" data-logo="./assets/brands/dewalt.svg">DeWalt</div>
+          <div class="logo-card" data-logo="./assets/brands/milwaukee.svg">Milwaukee Tool</div>
+          <div class="logo-card" data-logo="./assets/brands/fleece-performance.png">Fleece Performance Engineering</div>
+          <div class="logo-card" data-logo="./assets/brands/oral-b.svg">Oral-B</div>
+          <div class="logo-card" data-logo="./assets/brands/philips.svg">Philips</div>
+          <div class="logo-card" data-logo="./assets/brands/delonghi.png">De’Longhi</div>
+          <div class="logo-card" data-logo="./assets/brands/lg.svg">LG</div>
+          <div class="logo-card" data-logo="./assets/brands/samsung.png">Samsung</div>
+        </div>
+
+        <div class="cta-box cta-box--tight">
+          <div>
+            <h3>Want your brand represented here?</h3>
+            <p class="muted">Let’s talk distribution strategy, onboarding, and next steps.</p>
+          </div>
+          <a class="btn" href="./contact.html">Start a Conversation</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img class="footer__logo" src="./assets/logo.jpg" alt="Household Trends logo" />
+        <div>
+          <div class="footer__name">Household Trends</div>
+          <div class="footer__tag muted">Wholesale distribution for household goods & tools</div>
+        </div>
+      </div>
+      <div class="footer__links">
+        <a href="./index.html">Home</a>
+        <a href="./contact.html">Partner With Us</a>
+      </div>
+      <div class="footer__fine muted">
+        © <span id="year"></span> Household Trends. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="./main.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Partner With Us | Household Trends</title>
+  <meta name="description" content="Contact Household Trends to explore wholesale distribution partnerships." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav">
+     <a class="brand brand--logo-only" href="./index.html" aria-label="Household Trends Home">
+  <img class="brand__logo" src="./assets/logo.jpg" alt="Household Trends logo" />
+</a>
+
+
+      <nav class="nav__links" aria-label="Primary navigation">
+        <a href="./index.html">Home</a>
+        <a href="./brands.html">Brands We Connect With</a>
+        <a href="./contact.html" class="btn btn--small is-active">Partner With Us</a>
+      </nav>
+
+      <button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div id="mobileMenu" class="mobile">
+      <a href="./index.html">Home</a>
+      <a href="./brands.html">Brands We Connect With</a>
+      <a href="./contact.html" class="is-active">Partner With Us</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="pagehead">
+      <div class="container">
+        <h1>Partner with Household Trends</h1>
+        <p class="muted">Tell us a bit about your brand and what success looks like. We’ll reply with next steps.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container two-col">
+        <div class="panel">
+          <h2 class="h3">What to include</h2>
+          <ul class="list">
+            <li>Product categories & best sellers</li>
+            <li>Target retailers/accounts (if known)</li>
+            <li>Current distribution footprint</li>
+            <li>MAP/pricing guidance & channel rules</li>
+            <li>MOQ / lead times / availability</li>
+          </ul>
+
+          <div class="note">
+            <strong>Note:</strong> This form is front-end only (no product sales).
+            You can connect it to email using Formspree/Netlify Forms later.
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2 class="h3">Partnership inquiry</h2>
+
+          <form class="form" action="#" method="post" onsubmit="return window.fakeSubmit(event)">
+            <div class="form__row">
+              <label>Company name</label>
+              <input required name="company" placeholder="Your company" />
+            </div>
+
+            <div class="form__row">
+              <label>Your name</label>
+              <input required name="name" placeholder="Full name" />
+            </div>
+
+            <div class="form__row">
+              <label>Email</label>
+              <input required type="email" name="email" placeholder="name@company.com" />
+            </div>
+
+            <div class="form__row">
+              <label>Product categories</label>
+              <input name="categories" placeholder="Housewares, appliances, tools, etc." />
+            </div>
+
+            <div class="form__row">
+              <label>Message</label>
+              <textarea required name="message" rows="5" placeholder="What are you looking for in a distribution partner?"></textarea>
+            </div>
+
+            <button class="btn" type="submit">Send inquiry</button>
+            <p class="muted tiny" id="formMsg" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img class="footer__logo" src="./assets/logo.jpg" alt="Household Trends logo" />
+        <div>
+          <div class="footer__name">Household Trends</div>
+          <div class="footer__tag muted">Wholesale distribution for household goods & tools</div>
+        </div>
+      </div>
+      <div class="footer__links">
+        <a href="./index.html">Home</a>
+        <a href="./brands.html">Brands We Connect With</a>
+      </div>
+      <div class="footer__fine muted">
+        © <span id="year"></span> Household Trends. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="./main.js"></script>
+</body>
+</html>
