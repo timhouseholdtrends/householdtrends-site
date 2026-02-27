@@ -1517,5 +1517,107 @@ input:focus, textarea:focus{
     margin-bottom: -10px;
   }
 }
+/* =========================
+   FOOTER FIX (no overlay, logo+address together)
+   ========================= */
+
+/* Make footer behave normally again */
+.footer{
+  position: relative;
+  border-top: 1px solid var(--line);
+  padding: 26px 0 30px;
+  height: auto;          /* IMPORTANT: remove forced 72px */
+  overflow: hidden;      /* keeps things tidy */
+}
+
+/* Standard container layout */
+.footer__inner{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* Left block = big logo + address stacked */
+.footer__brandBlock{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: 420px;
+}
+
+/* Keep your logo big */
+.footer__brandBlock .footer__logo{
+  height: 250px;       /* you said this is required */
+  width: auto;
+  max-width: 340px;
+  object-fit: contain;
+  display: block;
+  margin: 0;           /* remove weird pushing */
+}
+
+/* Address directly under logo */
+.footer__brandBlock .footer__address{
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255,255,255,.68);
+  margin: 0;
+}
+
+.footer__brandBlock .footer__address strong{
+  display:block;
+  font-weight: 700;
+  color: rgba(255,255,255,.85);
+  margin-bottom: 4px;
+}
+
+.footer__brandBlock .footer__address a{
+  color: rgba(255,255,255,.72);
+  text-decoration: none;
+}
+.footer__brandBlock .footer__address a:hover{
+  color: rgba(255,255,255,.92);
+  text-decoration: underline;
+}
+
+/* Right side stays aligned (Inc badge, etc.) */
+.footer__right{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.footer__seen{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+
+.footer__seen-label{
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,.65);
+  white-space: nowrap;
+}
+
+.footer__badge{
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  opacity: .92;
+}
+
+/* Mobile */
+@media (max-width: 900px){
+  .footer__inner{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer__right{
+    align-items: flex-start;
+  }
+}
 
 
