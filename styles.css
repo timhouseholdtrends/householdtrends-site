@@ -1444,5 +1444,78 @@ input:focus, textarea:focus{
   width: auto !important;
   max-width: 320px !important;
 }
+/* ===== Footer: normal height, floating brand block ===== */
+.footer{
+  position: relative;
+  height: 72px;                 /* matches header bar */
+  padding: 0;
+  border-top: 1px solid var(--line);
+  overflow: visible;
+}
+
+.footer__inner{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+}
+
+/* Floating block that contains BOTH logo + address */
+.footer__brandBlock{
+  position: absolute;
+  left: 20px;                   /* matches container padding feel */
+  bottom: -6px;                 /* adjust this to raise/lower the whole block */
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  /* This is the key: no layout impact */
+  pointer-events: auto;
+}
+
+/* Big logo stays big, but doesn't affect footer height */
+.footer__brandBlock .footer__logo{
+  height: 250px;
+  width: auto;
+  max-width: 340px;
+  object-fit: contain;
+  display: block;
+
+  /* tighten the spacing below the logo */
+  margin-bottom: -14px;         /* adjust: -8 to -22 depending on taste */
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,.35));
+}
+
+/* Address sits directly under logo (not at footer bottom) */
+.footer__brandBlock .footer__address{
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255,255,255,.68);
+}
+
+.footer__brandBlock .footer__address strong{
+  color: rgba(255,255,255,.85);
+  font-weight: 700;
+}
+
+.footer__brandBlock .footer__address a{
+  color: rgba(255,255,255,.72);
+  text-decoration: none;
+}
+.footer__brandBlock .footer__address a:hover{
+  color: rgba(255,255,255,.92);
+  text-decoration: underline;
+}
+
+/* On smaller screens, shrink the floating logo so it doesn't cover content */
+@media (max-width: 760px){
+  .footer__brandBlock .footer__logo{
+    height: 180px;
+    margin-bottom: -10px;
+  }
+}
 
 
