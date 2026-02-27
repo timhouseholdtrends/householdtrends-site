@@ -1619,5 +1619,68 @@ input:focus, textarea:focus{
     align-items: flex-start;
   }
 }
+/* ===== Footer fix: stop overlay + keep logo big ===== */
+.footer{
+  position: relative !important;
+  height: auto !important;
+  padding: 26px 0 30px !important;
+  border-top: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.footer__inner{
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+  gap: 24px !important;
+}
+
+/* Logo + address block */
+.footer__brandBlock{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap: 10px;
+  max-width: 420px;
+}
+
+/* keep your 250px logo */
+.footer__brandBlock .footer__logo{
+  height: 250px !important;
+  width: auto !important;
+  max-width: 340px;
+  object-fit: contain;
+  display:block;
+  margin:0 !important;
+}
+
+.footer__brandBlock .footer__address{
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255,255,255,.68);
+}
+
+.footer__brandBlock .footer__address strong{
+  display:block;
+  font-weight:700;
+  color: rgba(255,255,255,.85);
+  margin-bottom: 4px;
+}
+
+.footer__brandBlock .footer__address a{
+  color: rgba(255,255,255,.72);
+  text-decoration:none;
+}
+.footer__brandBlock .footer__address a:hover{
+  color: rgba(255,255,255,.92);
+  text-decoration:underline;
+}
+
+@media (max-width: 900px){
+  .footer__inner{
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+}
 
 
