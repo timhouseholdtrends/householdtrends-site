@@ -763,7 +763,18 @@ body::after{
 .what-copy-box{
   flex: 1;
 }
+.footer__left{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap: 8px;
+}
 
+.footer__address{
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255,255,255,.65);
+}
 /* BOX: graphic */
 .what-graphic-box{
   border-radius: 16px;
@@ -1401,3 +1412,4 @@ input:focus, textarea:focus{
   width: auto !important;
   max-width: 320px !important;
 }
+
