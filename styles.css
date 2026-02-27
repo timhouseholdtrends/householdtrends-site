@@ -1140,7 +1140,7 @@ input:focus, textarea:focus{
 }
 
 .footer__seen-label{
-  font-size: 13px;
+  font-size: 10px;
   font-weight: 600;
   color: rgba(255,255,255,.65);
   white-space: nowrap;
@@ -1401,4 +1401,5 @@ input:focus, textarea:focus{
   width: auto !important;
   max-width: 320px !important;
 }
+
 
