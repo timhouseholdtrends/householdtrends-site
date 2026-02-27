@@ -944,6 +944,38 @@ body::after{
   grid-template-columns: 1.05fr .95fr;
   gap: 14px;
 }
+.footer{
+  position: relative;
+  height: 72px; /* same as header */
+  border-top: 1px solid var(--line);
+  overflow: visible;
+}
+
+.footer__brand{
+  position: relative;
+  height: 100%;
+}
+
+/* Big logo floats upward */
+.footer__logo{
+  position: absolute;
+  bottom: -10px;      /* adjust slightly if needed */
+  left: 0;
+
+  height: 250px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Address stays locked to bottom of footer bar */
+.footer__address{
+  position: absolute;
+  bottom: 8px;        /* sits nicely in footer bar */
+  left: 260px;        /* move right of logo width */
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(255,255,255,.65);
+}
 .panel{
   padding: 18px;
   border-radius: var(--radius2);
@@ -1412,4 +1444,5 @@ input:focus, textarea:focus{
   width: auto !important;
   max-width: 320px !important;
 }
+
 
