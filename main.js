@@ -62,3 +62,41 @@ window.fakeSubmit = function (e) {
   return false;
 };
 
+(() => {
+  const FORMEASY_URL =
+    "https://script.google.com/macros/s/AKfycbzbIbDeVqk1kdC6R9ulQ78JiHf_o8xtRQu2fmgo5Y95CPzNpczultQkSrZUd5W5Djrr/exec";
+
+  const form = document.querySelector("form.form");
+  const msg = document.getElementById("formMsg");
+
+  if (!form || !msg) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    msg.textContent = "Sending…";
+
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    try {
+      // FormEasy-style submit (JSON string, text/plain)
+      const res = await fetch(FORMEASY_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(data),
+      });
+
+      // Apps Script/FormEasy responses can be inconsistent; don't rely on json.ok
+      await res.text().catch(() => "");
+
+      if (res.ok) {
+        form.reset();
+        msg.textContent = "Thanks — we’ll get back to you shortly.";
+      } else {
+        msg.textContent = "Sent, but got a server error. Try again or email us.";
+      }
+    } catch (err) {
+      console.error(err);
+      msg.textContent = "Network error. Please try again.";
+    }
+  });
+})();
