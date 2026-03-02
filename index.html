@@ -365,8 +365,41 @@
   </footer>
 
   <script src="./main.js"></script>
+  <script>
+  const FORMEASY_URL = "https://script.google.com/macros/s/AKfycbxQgez78HLeSZQg1CV1GTEeTv_q2CX7NSD2mzOuge5wyZcqaSjuLGG7kiQ0c7QI68Ve/exec";
+
+  document.querySelector(".form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const msg = document.getElementById("formMsg");
+    msg.textContent = "Sending…";
+
+    const fd = new FormData(e.target);
+    const data = Object.fromEntries(fd.entries());
+
+    try {
+      const res = await fetch(FORMEASY_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(data),
+      });
+
+      const json = await res.json().catch(() => ({}));
+
+      if (res.ok && (json.ok ?? true)) {
+        e.target.reset();
+        msg.textContent = "Thanks — we’ll get back to you shortly.";
+      } else {
+        msg.textContent = "Error sending. Please try again.";
+      }
+    } catch (err) {
+      msg.textContent = "Network error. Please try again.";
+    }
+  });
+</script>
 </body>
 </html>
+
 
 
 
