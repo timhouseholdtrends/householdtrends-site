@@ -376,6 +376,8 @@
     const msg = document.getElementById("formMsg");
     if (!form || !msg) return;
 
+    const ENDPOINT = form.action; // your /exec URL
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       msg.textContent = "Sending…";
@@ -383,31 +385,26 @@
       const data = Object.fromEntries(new FormData(form).entries());
 
       try {
-        const res = await fetch(form.action, {
+        // no-cors prevents response-reading errors while still sending the POST
+        await fetch(ENDPOINT, {
           method: "POST",
+          mode: "no-cors",
           headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         });
 
-        // don’t assume JSON is always returned
-        const text = await res.text();
-
-        if (res.ok) {
-          form.reset();
-          msg.textContent = "Thanks — we’ll get back to you shortly.";
-        } else {
-          console.error("Form submit failed:", text);
-          msg.textContent = "Error sending. Please try again.";
-        }
+        form.reset();
+        msg.textContent = "Thanks — we’ll get back to you shortly.";
       } catch (err) {
         console.error(err);
-        msg.textContent = "Network error. Please try again.";
+        msg.textContent = "Network error — please try again.";
       }
     });
   })();
 </script>
 </body>
 </html>
+
 
 
 
