@@ -251,36 +251,40 @@
         We’ll follow up with next steps and potential fit.
       </p>
 
-      <form class="form" action="#" method="post" https://script.google.com/macros/s/AKfycbxiD6MPl-NWT4CIRghhdTcOZrZkExa94JX2xVuRqeQzFQ4VW7hy90ztMr8BeBrUcqrs/exec>
-        <div class="form__row">
-          <label>Company name</label>
-          <input required name="company" placeholder="Your company" />
-        </div>
+    <form class="form"
+      action="https://script.google.com/macros/s/AKfycbxiD6MPl-NWT4CIRghhdTcOZrZkExa94JX2xVuRqeQzFQ4VW7hy90ztMr8BeBrUcqrs/exec"
+      method="POST">
 
-        <div class="form__row">
-          <label>Your name</label>
-          <input required name="name" placeholder="Full name" />
-        </div>
+  <input type="hidden" name="to_email" value="sales@householdtrends.com">
 
-        <div class="form__row">
-          <label>Email</label>
-          <input required type="email" name="email" placeholder="name@company.com" />
-        </div>
+  <div class="form__row">
+    <label>Company name</label>
+    <input required name="company" placeholder="Your company" />
+  </div>
 
-        <div class="form__row">
-          <label>Product categories</label>
-          <input name="categories" placeholder="Housewares, appliances, tools, etc." />
-        </div>
+  <div class="form__row">
+    <label>Your name</label>
+    <input required name="name" placeholder="Full name" />
+  </div>
 
-        <div class="form__row">
-          <label>Message</label>
-          <textarea required rows="4" name="message"
-            placeholder="What are you looking for in a distribution partner?"></textarea>
-        </div>
+  <div class="form__row">
+    <label>Email</label>
+    <input required type="email" name="email" placeholder="name@company.com" />
+  </div>
 
-        <button class="btn" type="submit">Send inquiry</button>
-        <p class="muted tiny" id="formMsg" aria-live="polite"></p>
-      </form>
+  <div class="form__row">
+    <label>Product categories</label>
+    <input name="categories" placeholder="Housewares, appliances, tools, etc." />
+  </div>
+
+  <div class="form__row">
+    <label>Message</label>
+    <textarea required rows="4" name="message"
+      placeholder="What are you looking for in a distribution partner?"></textarea>
+  </div>
+
+  <button class="btn" type="submit">Send inquiry</button>
+</form>
     </div>
 
     <!-- RIGHT: HANDSHAKE (TOP) + BRANDS (BOTTOM) -->
@@ -363,6 +367,7 @@
   <script src="./main.js"></script>
 </body>
 </html>
+
 
 
 
