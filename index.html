@@ -364,76 +364,47 @@
   </footer>
 
   <script src="./main.js"></script>
-  <script>
-  const FORMEASY_URL = "https://script.google.com/macros/s/AKfycbzbIbDeVqk1kdC6R9ulQ78JiHf_o8xtRQu2fmgo5Y95CPzNpczultQkSrZUd5W5Djrr/exec";
+  (() => {
+  const FORMEASY_URL =
+    "https://script.google.com/macros/s/AKfycbzbIbDeVqk1kdC6R9ulQ78JiHf_o8xtRQu2fmgo5Y95CPzNpczultQkSrZUd5W5Djrr/exec";
 
-  document.querySelector(".form").addEventListener("submit", async (e) => {
+  const form = document.querySelector("form.form");
+  const msg = document.getElementById("formMsg");
+
+  if (!form || !msg) return;
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-
-    const msg = document.getElementById("formMsg");
     msg.textContent = "Sending…";
 
-    const fd = new FormData(e.target);
-    const data = Object.fromEntries(fd.entries());
+    const data = Object.fromEntries(new FormData(form).entries());
 
     try {
+      // FormEasy-style submit (JSON string, text/plain)
       const res = await fetch(FORMEASY_URL, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(data),
       });
 
-      const json = await res.json().catch(() => ({}));
+      // Apps Script/FormEasy responses can be inconsistent; don't rely on json.ok
+      await res.text().catch(() => "");
 
-      if (res.ok && (json.ok ?? true)) {
-        e.target.reset();
+      if (res.ok) {
+        form.reset();
         msg.textContent = "Thanks — we’ll get back to you shortly.";
       } else {
-        msg.textContent = "Error sending. Please try again.";
+        msg.textContent = "Sent, but got a server error. Try again or email us.";
       }
     } catch (err) {
+      console.error(err);
       msg.textContent = "Network error. Please try again.";
     }
   });
-</script>
-  <script>
-  (function () {
-    const form = document.querySelector("form.form");
-    const msg = document.getElementById("formMsg");
-    if (!form || !msg) return;
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      msg.textContent = "Sending…";
-
-      const data = Object.fromEntries(new FormData(form).entries());
-
-      try {
-        const res = await fetch(form.action, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(data)
-        });
-
-        // don’t assume JSON is always returned
-        const text = await res.text();
-
-        if (res.ok) {
-          form.reset();
-          msg.textContent = "Thanks — we’ll get back to you shortly.";
-        } else {
-          console.error("Form submit failed:", text);
-          msg.textContent = "Error sending. Please try again.";
-        }
-      } catch (err) {
-        console.error(err);
-        msg.textContent = "Network error. Please try again.";
-      }
-    });
-  })();
-</script>
+})();
 </body>
 </html>
+
 
 
 
