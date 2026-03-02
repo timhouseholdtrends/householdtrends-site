@@ -255,7 +255,7 @@
       action="https://script.google.com/macros/s/AKfycbxiD6MPl-NWT4CIRghhdTcOZrZkExa94JX2xVuRqeQzFQ4VW7hy90ztMr8BeBrUcqrs/exec"
       method="POST">
 
-  <input type="hidden" name="to_email" value="sales@householdtrends.com">
+  
 
   <div class="form__row">
     <label>Company name</label>
@@ -284,6 +284,7 @@
   </div>
 
   <button class="btn" type="submit">Send inquiry</button>
+      <p class="muted tiny" id="formMsg" aria-live="polite"></p>
 </form>
     </div>
 
@@ -397,8 +398,45 @@
     }
   });
 </script>
+  <script>
+  (function () {
+    const form = document.querySelector("form.form");
+    const msg = document.getElementById("formMsg");
+    if (!form || !msg) return;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      msg.textContent = "Sending…";
+
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(data)
+        });
+
+        // don’t assume JSON is always returned
+        const text = await res.text();
+
+        if (res.ok) {
+          form.reset();
+          msg.textContent = "Thanks — we’ll get back to you shortly.";
+        } else {
+          console.error("Form submit failed:", text);
+          msg.textContent = "Error sending. Please try again.";
+        }
+      } catch (err) {
+        console.error(err);
+        msg.textContent = "Network error. Please try again.";
+      }
+    });
+  })();
+</script>
 </body>
 </html>
+
 
 
 
